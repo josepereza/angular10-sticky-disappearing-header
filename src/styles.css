@@ -14,13 +14,14 @@ main {
   padding: 16px;
 }
 
-[data-stuck] {
+.miheader {
   position: sticky;
   top: 0;
   transition: transform 0.3s;
 }
 
-[data-stuck='false'] {
+
+.cambio{
   transform: translate3d(0, -100%, 0);
   transition: transform 0.3s 0.5s;
 }

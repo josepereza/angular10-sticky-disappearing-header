@@ -20,7 +20,7 @@ export class StickyDirective {
   constructor(
     @Inject(DestroyService) destroy$: Observable<void>,
     @Inject(WINDOW) windowRef: Window,
-    renderer: Renderer2,
+    public renderer: Renderer2,private elRef: ElementRef,
     { nativeElement }: ElementRef<HTMLElement>
   ) {
     fromEvent(windowRef, "scroll")
@@ -33,7 +33,12 @@ export class StickyDirective {
         takeUntil(destroy$)
       )
       .subscribe(stuck => {
-        renderer.setAttribute(nativeElement, "data-stuck", String(stuck));
+        if (!stuck){
+           this.renderer.addClass(this.elRef.nativeElement, 'cambio');
+        }else {
+          this.renderer.removeClass(this.elRef.nativeElement,'cambio')
+        }
+         
       });
   }
 }
